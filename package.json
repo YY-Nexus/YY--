@@ -60,7 +60,8 @@
     "zod": "^3.24.1",
     "jspdf": "latest",
     "html2canvas": "latest",
-    "pptxgenjs": "latest"
+    "pptxgenjs": "latest",
+    "xlsx": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",

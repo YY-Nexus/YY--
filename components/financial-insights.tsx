@@ -1,45 +1,55 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { AlertCircle, CheckCircle, TrendingDown, TrendingUp } from "lucide-react"
+import { AlertCircle, ArrowDownIcon, ArrowUpIcon, MinusIcon } from "lucide-react"
 
-interface FinancialInsightsProps {
-  insights: string[]
-  className?: string
+interface InsightItem {
+  title: string
+  description: string
+  impact: "positive" | "negative" | "neutral"
 }
 
-export function FinancialInsights({ insights, className }: FinancialInsightsProps) {
-  // 根据洞察内容确定图标和颜色
-  const getInsightIcon = (insight: string) => {
-    if (insight.includes("高于") || insight.includes("增长") || insight.includes("良好") || insight.includes("优秀")) {
-      return { icon: <TrendingUp className="h-5 w-5 text-green-500" />, color: "border-green-200 bg-green-50" }
-    }
+interface FinancialInsightsProps {
+  insights: InsightItem[]
+}
 
-    if (insight.includes("低于") || insight.includes("降低") || insight.includes("减少") || insight.includes("下降")) {
-      return { icon: <TrendingDown className="h-5 w-5 text-red-500" />, color: "border-red-200 bg-red-50" }
+export function FinancialInsights({ insights }: FinancialInsightsProps) {
+  // 根据影响类型获取图标和颜色
+  const getImpactDetails = (impact: string) => {
+    switch (impact) {
+      case "positive":
+        return { icon: <ArrowUpIcon className="h-5 w-5" />, color: "text-green-500 bg-green-50" }
+      case "negative":
+        return { icon: <ArrowDownIcon className="h-5 w-5" />, color: "text-red-500 bg-red-50" }
+      default:
+        return { icon: <MinusIcon className="h-5 w-5" />, color: "text-gray-500 bg-gray-50" }
     }
-
-    if (insight.includes("建议") || insight.includes("需要") || insight.includes("应该")) {
-      return { icon: <AlertCircle className="h-5 w-5 text-yellow-500" />, color: "border-yellow-200 bg-yellow-50" }
-    }
-
-    return { icon: <CheckCircle className="h-5 w-5 text-blue-500" />, color: "border-blue-200 bg-blue-50" }
   }
 
   return (
-    <Card className={className}>
+    <Card>
       <CardHeader>
-        <CardTitle>财务洞察</CardTitle>
+        <CardTitle className="flex items-center gap-2">
+          <AlertCircle className="h-5 w-5" />
+          财务洞察
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {insights.map((insight, index) => {
-            const { icon, color } = getInsightIcon(insight)
+            const { icon, color } = getImpactDetails(insight.impact)
             return (
-              <div key={index} className={`p-4 border rounded-lg flex items-start gap-3 ${color}`}>
-                {icon}
-                <p>{insight}</p>
-              </div>
+              <Card key={index} className="border-0 shadow-sm">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <div className={`rounded-full p-1.5 ${color}`}>{icon}</div>
+                    {insight.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{insight.description}</p>
+                </CardContent>
+              </Card>
             )
           })}
         </div>
