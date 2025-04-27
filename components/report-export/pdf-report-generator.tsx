@@ -79,14 +79,16 @@ export function PDFReportGenerator({
       doc.line(14, 32, size.width - 14, 32)
 
       // 过滤要导出的内容
-      const contentElements = contentRef.current.children
+      const contentElements = contentRef.current.children || []
       const elementsToExport: HTMLElement[] = []
 
       for (let i = 0; i < contentElements.length; i++) {
         const element = contentElements[i] as HTMLElement
-        const isChart = element.classList.contains("chart-container")
-        const isTable = element.classList.contains("table-container")
-        const isInsight = element.classList.contains("insight-container")
+        if (!element) continue // 跳过不存在的元素
+
+        const isChart = element.classList?.contains("chart-container")
+        const isTable = element.classList?.contains("table-container")
+        const isInsight = element.classList?.contains("insight-container")
 
         if (
           (isChart && includeCharts) ||

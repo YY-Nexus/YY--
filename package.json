@@ -58,10 +58,10 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
     "zod": "^3.24.1",
-    "jspdf": "latest",
+    "xlsx": "latest",
     "html2canvas": "latest",
-    "pptxgenjs": "latest",
-    "xlsx": "latest"
+    "jspdf": "latest",
+    "pptxgenjs": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
