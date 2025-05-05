@@ -1,0 +1,108 @@
+/* 辅助功能样式 */
+
+/* 字体大小调整 */
+html {
+  font-size: calc(16px * var(--a11y-font-size, 100%) / 100);
+}
+
+/* 行高调整 */
+body {
+  line-height: calc(var(--a11y-line-height, 150%) / 100);
+}
+
+/* 字母间距调整 */
+body {
+  letter-spacing: var(--a11y-letter-spacing, 0);
+}
+
+/* 减少动画 */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.001s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0.001s !important;
+  transition-delay: 0s !important;
+}
+
+/* 高对比度模式 */
+.high-contrast {
+  --foreground: 0 0% 0%;
+  --background: 0 0% 100%;
+  --primary: 240 100% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 10% 90%;
+  --secondary-foreground: 240 100% 40%;
+  --muted: 240 10% 90%;
+  --muted-foreground: 240 100% 40%;
+  --border: 0 0% 0%;
+}
+
+.dark.high-contrast {
+  --foreground: 0 0% 100%;
+  --background: 0 0% 0%;
+  --primary: 240 100% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 10% 20%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 10% 20%;
+  --muted-foreground: 0 0% 100%;
+  --border: 0 0% 100%;
+}
+
+/* 放大鼠标指针 */
+.large-pointer {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z'/%3E%3Cpath d='m13 13 6 6'/%3E%3C/svg%3E")
+    0 0, auto;
+}
+
+.large-pointer button,
+.large-pointer a,
+.large-pointer [role="button"] {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")
+    8 8, pointer;
+}
+
+/* 增强键盘导航 */
+.enhanced-keyboard-nav :focus-visible {
+  outline: 3px solid hsl(var(--primary)) !important;
+  outline-offset: 4px !important;
+  border-radius: 2px;
+  box-shadow: 0 0 0 6px hsl(var(--background));
+  transition: outline-offset 0.1s ease;
+  z-index: 9999;
+  position: relative;
+}
+
+/* 屏幕阅读器优化 */
+.screen-reader-optimized .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.screen-reader-optimized [aria-hidden="true"] {
+  display: none !important;
+}
+
+/* 跳过导航链接 */
+.screen-reader-optimized .skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.2s;
+}
+
+.screen-reader-optimized .skip-link:focus {
+  top: 0;
+}

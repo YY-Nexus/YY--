@@ -1,0 +1,21 @@
+{
+  "name": "言语「逸品」数字驾驶舱",
+  "short_name": "言语逸品",
+  "description": "工作生活全栈赋能平台 - 实时数据与智能分析",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
